@@ -1,9 +1,9 @@
-package com.apolis.testingdemo.model
+package com.apolis.testingdemo.viewmodel
 
 import android.content.Context
 import android.content.SharedPreferences
 
-class Repository(val context : Context) : MainRepository {
+open class Repository(val context : Context) : MainRepository {
 
     companion object {
 

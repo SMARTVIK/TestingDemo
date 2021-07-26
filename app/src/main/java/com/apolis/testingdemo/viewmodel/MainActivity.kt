@@ -1,4 +1,4 @@
-package com.apolis.testingdemo
+package com.apolis.testingdemo.viewmodel
 
 import android.content.DialogInterface
 import android.content.res.Resources
@@ -11,9 +11,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.apolis.testingdemo.model.Repository
-import com.apolis.testingdemo.model.UiModel
-import com.apolis.testingdemo.viewmodel.MainViewModel
+import com.apolis.testingdemo.R
 
 class MainActivity : AppCompatActivity() {
 

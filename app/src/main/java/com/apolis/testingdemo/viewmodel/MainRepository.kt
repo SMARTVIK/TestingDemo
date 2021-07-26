@@ -1,4 +1,4 @@
-package com.apolis.testingdemo.model
+package com.apolis.testingdemo.viewmodel
 
 interface MainRepository {
     fun getCount() : Int

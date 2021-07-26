@@ -2,8 +2,6 @@ package com.apolis.testingdemo.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.apolis.testingdemo.model.MainRepository
-import com.apolis.testingdemo.model.UiModel
 
 class MainViewModel : ViewModel() {
 
@@ -14,16 +12,16 @@ class MainViewModel : ViewModel() {
     }
 
     lateinit var repository : MainRepository
-
     var liveData : MutableLiveData<UiModel> = MutableLiveData()
+
+    fun initialize() {
+        liveData.postValue(UiModel.CountUpdate(repository.getCount()))
+        liveData.postValue(UiModel.TitleUpdate(repository.getTitle()!!))
+    }
 
     fun setTitle(title : String) {
         repository.setTitle(title)
         liveData.value = UiModel.TitleUpdate(title)
     }
-
-
-
-
 
 }
