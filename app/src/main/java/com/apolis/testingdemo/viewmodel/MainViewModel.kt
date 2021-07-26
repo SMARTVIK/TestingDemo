@@ -7,8 +7,8 @@ class MainViewModel : ViewModel() {
 
     fun incrementCount() {
         val count = repository.getCount() + 1
-        repository.setCount(count)
-        liveData.value = UiModel.CountUpdate(count)
+        repository.setCount(count) //6
+        liveData.value = UiModel.CountUpdate(count)//count = 1
     }
 
     lateinit var repository : MainRepository
@@ -23,5 +23,4 @@ class MainViewModel : ViewModel() {
         repository.setTitle(title)
         liveData.value = UiModel.TitleUpdate(title)
     }
-
 }
