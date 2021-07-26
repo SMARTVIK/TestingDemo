@@ -30,5 +30,13 @@ open class Repository(val context : Context) : MainRepository {
         sharedPrefs.edit().putString(KEY_TITLE, title).apply()
     }
 
+    override fun reset() {
+        sharedPrefs.edit().clear().apply() //resetting everything
+    }
+
+    override fun getTitleAndCount(): Pair<String, Int> {
+        return Pair(getTitle()!!, getCount())
+    }
+
 
 }

@@ -11,6 +11,21 @@ import org.junit.Test
 
 class MainViewModelTest {
 
+    //UI testing -> Espresso is used for UI testing ,
+
+
+    //withId(R.id.title).performClick().check(matches(isDisplayed()))
+    /*
+
+    ViewMatchers contains methods that Espresso uses to find the view on your screen with which it needs to interact.
+
+    ViewActions contains methods that tell Espresso how to automate your UI.
+    For example, it contains methods like click() that you can use to tell Espresso to click on a button.
+
+    ViewAssertions contains methods used to check if a view matches a certain set of conditions.
+
+    */
+
     @Rule
     @JvmField
     val instantTaskExecutorRule = InstantTaskExecutorRule() //this is for live data
@@ -72,6 +87,15 @@ class MainViewModelTest {
 
     }
 
+    @Test
+    fun resetTheData() {
+        viewModel.reset()
+        verify(liveDataObserver).onChanged(UiModel.CountUpdate(0))
+    }
+
+    //Highest test coverage report
+    //we can find out potentials bugs at initial stage
+    //Faster development
 
     private fun stubbingTheValueCount(count: Int) {
         whenever(repository.getCount()).thenReturn(count)

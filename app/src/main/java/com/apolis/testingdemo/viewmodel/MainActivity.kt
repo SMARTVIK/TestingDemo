@@ -17,26 +17,17 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var viewModel : MainViewModel
     lateinit var repository: Repository
+    lateinit var title : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         repository = Repository(this)
+        title = findViewById<TextView>(R.id.title)
+        val countTextView = findViewById<TextView>(R.id.textViewCount)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.repository = repository
-
-        val button = findViewById<Button>(R.id.doSomeAction)
-        button.setOnClickListener {
-            viewModel.incrementCount()
-        }
-
-        val title = findViewById<TextView>(R.id.title)
-        val countTextView = findViewById<TextView>(R.id.textViewCount)
-        title.setOnClickListener {
-            changeTitleDialog()
-        }
-
         viewModel.liveData.observe(this, Observer {
 
             when(it) {
@@ -55,14 +46,32 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+        viewModel.initialize()
+
+        val button = findViewById<Button>(R.id.doSomeAction)
+        button.setOnClickListener {
+            viewModel.incrementCount()
+        }
+
+        title.setOnClickListener {
+            changeTitleDialog()
+        }
+
+
+        //Traditional approach - > implementation then testing
+        //TDD -> First we write the test cases then we implement the code to pass the test cases
+
     }
 
     private fun changeTitleDialog() {
 
         AlertDialog.Builder(this).apply {
 
-            setTitle("Change Title")
+            setTitle("Change Title") //R.id.alertTitle
+
             val inputBox = EditText(this@MainActivity)
+
+            inputBox.setText(title.text.toString())
 
             val density = Resources.getSystem().displayMetrics.density
             val padding = Math.round(16 * density)

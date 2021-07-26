@@ -15,12 +15,18 @@ class MainViewModel : ViewModel() {
     var liveData : MutableLiveData<UiModel> = MutableLiveData()
 
     fun initialize() {
-        liveData.postValue(UiModel.CountUpdate(repository.getCount()))
-        liveData.postValue(UiModel.TitleUpdate(repository.getTitle()!!))
+        val (title, count) = repository.getTitleAndCount()
+        liveData.postValue(UiModel.CountUpdate(count))
+        liveData.postValue(UiModel.TitleUpdate(title))
     }
 
     fun setTitle(title : String) {
         repository.setTitle(title)
         liveData.value = UiModel.TitleUpdate(title)
+    }
+
+    fun reset() {
+        repository.reset()
+        liveData.value = UiModel.CountUpdate(0)
     }
 }
