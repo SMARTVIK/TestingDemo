@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
-        viewModel.initialize()
+        viewModel.populate()
 
         val button = findViewById<Button>(R.id.doSomeAction)
         button.setOnClickListener {
@@ -57,6 +57,10 @@ class MainActivity : AppCompatActivity() {
             changeTitleDialog()
         }
 
+
+        findViewById<Button>(R.id.Reset).setOnClickListener {
+            viewModel.reset()
+        }
 
         //Traditional approach - > implementation then testing
         //TDD -> First we write the test cases then we implement the code to pass the test cases

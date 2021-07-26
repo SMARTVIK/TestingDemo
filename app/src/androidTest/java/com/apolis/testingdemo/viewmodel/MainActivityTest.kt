@@ -1,6 +1,7 @@
 package com.apolis.testingdemo.viewmodel
 
 import android.widget.EditText
+import android.widget.TextView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -53,6 +54,23 @@ class MainActivityTest {
         onView(allOf(withId(R.id.title), withText(title))).check(matches(isDisplayed()))
 
     }
+
+    @Test
+    fun incrementingCountUpdatesCountView() {
+
+        val previousCountString = mainActivityRule.activity.findViewById<TextView>(R.id.textViewCount).text.toString()
+
+        val previousCount = if(previousCountString.isBlank()) 0 else previousCountString.toInt()
+
+        onView(withId(R.id.doSomeAction)).perform(click())
+
+        val newCountString = (previousCount + 1).toString()
+
+        onView(allOf(withId(R.id.textViewCount), withText(newCountString))).check(matches(
+            isDisplayed()))
+
+    }
+
 
 
 }
